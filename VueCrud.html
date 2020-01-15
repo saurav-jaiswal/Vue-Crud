@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue CRUD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="VueCss.css">
+</head>
+<body>
+
+<!-----------------------------------Form-Start------------------------------------------------->
+<div id="app">
+    <div class="container">
+        <h4 class="heading"><strong>Fill the </strong> Informations <span></span></h4>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-4 control-label">FirstName</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i
+                            class="glyphicon glyphicon-user"></i></span>
+                        <input name="fname" placeholder="Enter FirstName" class="form-control" type="text" v-model="user.fname" required></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">LastName </label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="lname" placeholder="Enter LastName" class="form-control" type="text" v-model="user.lname" required></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Contact No </label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                        <input name="cnum" placeholder="Enter ContactNumber" class="form-control" type="number" v-model="user.contact" required></div>
+                </div>
+            </div>
+            <div class="form-group" style="float: right">
+                <input type="submit" value="submit" v-if="saveBtn" class="btn btn-success btn-sm" @click="addData" :disabled="!user.fname || !user.lname || !user.contact"/>
+                <input type="submit" value="update" v-if="updateBtn" class="btn btn-success btn-sm" @click.prevent="updateData(user.id)" :disabled="!user.fname || !user.lname || !user.contact"/>
+            </div>
+        </form>
+        <br><br>
+
+        <!-----------------------------------------------Form-End---------------------------------------->
+
+        <!---------------------------------------------Table-Start--------------------------------------->
+
+        <h4 class="heading"><strong>Details </strong><span></span></h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>ContactNo</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item, index) in users " :key="index">
+                <td>{{index}}</td>
+                <td>{{item.fname}}</td>
+                <td>{{item.lname}}</td>
+                <td>{{item.contact}}</td>
+                <td>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-sm" @click="edit(item)"><i class="fa fa-edit" aria-hidden="true"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" @click="delUser(item)"><i class="fa fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!---------------------------------------------Table-End--------------------------------------->
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</html>
