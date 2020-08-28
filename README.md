@@ -2,5 +2,5 @@
 
 # Screenshot
 
-![](Capture.png)
+![](Capture.PNG)
 
